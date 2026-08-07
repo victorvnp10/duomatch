@@ -1,0 +1,6 @@
+# Require review on changes to the domain and application layers.
+# GitHub does not allow a PR author to satisfy required-reviewer count by
+# approving their own PR, so on a solo repo this becomes an active gate as
+# soon as a second collaborator is added.
+/packages/domain/       @victorvnp10
+/packages/application/  @victorvnp10
