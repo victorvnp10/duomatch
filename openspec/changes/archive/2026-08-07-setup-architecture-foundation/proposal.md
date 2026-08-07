@@ -20,9 +20,11 @@ Per the recommended Strangler Fig migration path, the first change must establis
 ## Capabilities
 
 ### New Capabilities
+
 - `architecture-governance`: structural and tooling rules that every later capability must satisfy — layered package structure, enforced dependency direction, strict typing, lint/format/commit gates, and the CI pipeline that verifies all of it on every PR.
 
 ### Modified Capabilities
+
 (none — greenfield structure, no existing specs to modify)
 
 ## Impact

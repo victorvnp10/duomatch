@@ -5,11 +5,13 @@ See proposal.md - Why. This is a greenfield repository: there is no existing mon
 ## Goals / Non-Goals
 
 **Goals:**
+
 - Pick one concrete tool per governance requirement in specs/architecture-governance/spec.md and justify it.
 - Make the dependency-direction rule fail closed (new packages are blocked by default until explicitly wired in), not fail open.
 - Prove the CI pipeline is a real, non-bypassable gate from the very first commit, not just wiring that looks correct.
 
 **Non-Goals:**
+
 - Choosing the Supabase schema, RPC design, or Edge Function structure (out of scope until a change touches `infrastructure-supabase`).
 - Choosing the client-state library (TanStack Query / Zustand) — that decision belongs to the `application/` migration change.
 - Scaffolding `apps/admin` or any UI — no `presentation/` code exists yet.
@@ -57,6 +59,7 @@ Native ESM and TypeScript support without a transpile step, and shares Turborepo
 No production system or existing users are affected — this is the first commit to an empty repository, so there is no data migration and no traffic cutover.
 
 Deployment order (each step is independently mergeable behind the same PR checklist once the pipeline itself exists):
+
 1. Root config: `package.json` with `packageManager` pinned, `turbo.json`, `packages/config/` (tsconfig base, ESLint preset, Prettier config).
 2. Empty layer packages (`packages/domain`, `packages/application`, `packages/infrastructure-supabase`) each with their own `package.json`/`tsconfig.json` extending the base, plus one seeded smoke test in `domain`.
 3. `dependency-cruiser` config expressing the allowed edges, run locally to confirm it passes against the (currently trivial) graph.
