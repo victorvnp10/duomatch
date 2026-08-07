@@ -1,0 +1,23 @@
+{
+  "name": "@duomatch/application",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "dead-code": "ts-prune -p tsconfig.json"
+  },
+  "dependencies": {
+    "@duomatch/domain": "workspace:*"
+  },
+  "devDependencies": {
+    "@duomatch/config": "workspace:*",
+    "eslint": "^9.12.0",
+    "ts-prune": "^0.10.3",
+    "typescript": "^5.6.3"
+  }
+}

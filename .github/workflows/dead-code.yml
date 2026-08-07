@@ -1,0 +1,31 @@
+name: Dead code scan
+
+# Scheduled, not run on pull requests: unused-export detection is a signal to review,
+# not a merge gate (see specs/architecture-governance/spec.md - "Dead code detection").
+on:
+  schedule:
+    - cron: "0 6 * * 1" # weekly, Monday 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  dead-code:
+    name: ts-prune
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build (dead-code scan needs compiled type info)
+        run: pnpm build
+
+      - name: Scan for unused exports
+        run: pnpm dead-code

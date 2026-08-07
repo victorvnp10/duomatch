@@ -1,0 +1,9 @@
+{
+  "extends": "@duomatch/config/tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "references": [{ "path": "../domain" }],
+  "include": ["src"]
+}
