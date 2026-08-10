@@ -24,6 +24,15 @@ export default {
       from: { path: "^packages/infrastructure-supabase" },
       to: { path: "^(packages/infrastructure-supabase|packages/domain)" },
     },
+    // migrate-persistence-achievements-round-rules: infrastructure-supabase's
+    // Supabase adapters need the actual client SDK. Workspace deps resolve
+    // through pnpm's node_modules/.pnpm/<pkg>@<version>/... symlink target,
+    // so this matches on the unpacked package path rather than being
+    // anchored to the start of the resolved path.
+    {
+      from: { path: "^packages/infrastructure-supabase" },
+      to: { path: "node_modules/@supabase/supabase-js" },
+    },
     {
       from: { path: "^apps/[^/]+" },
       to: { path: "^(apps/[^/]+|packages/application)" },
